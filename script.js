@@ -59,6 +59,7 @@ const quiz = document.getElementById("quiz");
 const resultDiv = document.getElementById("result");  
 const startBtn = document.getElementById("start-btn");
 const nextBtn = document.getElementById("next-btn");
+const submitBtn = document.getElementById("submit-btn");
 const footer = document.getElementById("footer");
 let currentQuestion = 0;
 let userAnswers = [];
@@ -69,14 +70,14 @@ startBtn.addEventListener("click", () => {
   footer.style.display = "none";
   quizForm.style.display = "block";
   quiz.style.display = "block";
+  currentQuestion = 0;
+  userAnswers = [];
   loadQuestion();
 });
 
-// Function to load the current question
 function loadQuestion() {
   const q = quizData[currentQuestion];
 
-  // 💡 Bonus: Reset the answer for the current question before showing it again
   userAnswers[currentQuestion] = null;
 
   let optionsHtml = "";
@@ -92,9 +93,15 @@ function loadQuestion() {
       ${optionsHtml}
     </div>
   `;
+
+if (currentQuestion === quizData.length - 1) {
+  nextBtn.style.display = "none";
+  submitBtn.style.display = "inline-block";
+} else {
+  nextBtn.style.display = "inline-block";
+  submitBtn.style.display = "none";
 }
-
-
+}
 
 nextBtn.addEventListener("click", () => {
   const selected = document.querySelector('input[name="option"]:checked');
@@ -105,11 +112,18 @@ nextBtn.addEventListener("click", () => {
   }
 
   currentQuestion++;
-  if (currentQuestion < quizData.length) {
-    loadQuestion();
+  loadQuestion(); // Load next question
+});
+
+submitBtn.addEventListener("click", () => {
+  const selected = document.querySelector('input[name="option"]:checked');
+  if (selected) {
+    userAnswers[currentQuestion] = parseInt(selected.value);
   } else {
-     showResult();
+    userAnswers[currentQuestion] = null;
   }
+
+  showResult();
 });
 
 function showResult() {
@@ -128,21 +142,25 @@ function showResult() {
   });
 
   resultDiv.innerHTML = `
-    <h2>📊 Result Summary</h2>
+    <h2>Result Summary</h2>
     <p>Total Questions: ${quizData.length}</p>
     <p>Correct: ${correct}</p>
     <p>Incorrect: ${incorrect}</p>
     <p><strong>Score: ${correct * 4 - incorrect}</strong></p>
   `;
   resultDiv.innerHTML += `<button id="restart-btn">Restart Quiz</button>`;
-  document.getElementById("restart-btn").addEventListener("click", () => {
+
+ document.getElementById("restart-btn").addEventListener("click", () => {
     currentQuestion = 0;
     userAnswers = [];
     resultDiv.style.display = "none";
     hero.style.display = "block";
     nav.style.display = "flex";
     quizForm.style.display = "none";
-    footer.style.display = "block";
     quiz.style.display = "none";
-  } );
+    footer.style.display = "block";
+    nextBtn.innerText = "Next Question"; // Reset button text
+    nextBtn.style.display = "inline-block";
+    submitBtn.style.display = "none";
+  });
 }
