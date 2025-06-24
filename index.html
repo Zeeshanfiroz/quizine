@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="nav">
+            <div class="logo">
+                <h1>quizine</h1>
+            </div>
+            <div class="login">
+                <button class="login-btn" >Login</button>
+                <button class="signup-btn">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-content" id="hero-content">
+                <h1>Crack Concepts. Win Confidence.</h1>
+                <p>At Quizine, we serve more than questions — we serve clarity. Step into fast, focused quizzes that sharpen your mind and elevate your confidence.</p>
+            </div>
+        
+            <div class="instructions" id="instructions">
+                <div class="info-box">
+                    <h2>Instructions</h2>
+                    <div>
+                        <p>Choose the best option for each question.</p>
+                        <p>The quiz consists of multiple-choice questions.</p>
+                        <p>Click "Next Question" to proceed to the next question.</p>
+                    </div>
+                </div>
+                <div class="marking-box">
+                    <h2>Marking Scheme</h2>
+                    <div>
+                        <p><strong>+4</strong> for correct</p>
+                        <p><strong>−1</strong> for incorrect</p>
+                        <p><strong>0</strong> for unattempted</p>
+                    </div>
+                </div>
+                <div class="start-btn-container">
+                    <button id="start-btn" class="start-btn">Start Quiz</button>
+                </div>
+            </div>
+        </section>
+        <section class="quiz" id="quiz" style="display: none;">
+            <form class="quiz-form" id="quiz-form" style="display: none;">
+                
+                <div id="quiz-form">
+                    <div id="question-box">
+                    </div>
+                    <div class="navigation">
+                        <button id="next-btn" type="button">Next Question</button>
+                    </div>
+                </div>
+            </form>
+            <div class="result" id="result" hidden>
+                <h2>Quiz Completed!</h2>
+                <p id="score"></p>
+                <button id="restart-btn" >Restart Quiz</button>
+        </section>
+
+    </main>
+    <footer id ="footer">
+        <div class="footer-content">
+            <p>2025 Quizine. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
